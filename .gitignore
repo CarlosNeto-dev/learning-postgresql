@@ -9,6 +9,7 @@ docker/.env
 # Editor
 .vscode/*
 !.vscode/extensions.json
+!.vscode/CLAUDE.md
 
 # Docker volumes / local data
 docker/postgres-data/
