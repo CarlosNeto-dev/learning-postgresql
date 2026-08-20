@@ -1,0 +1,14 @@
+# Secrets
+docker/.env
+*.env
+!*.env.example
+
+# OS
+.DS_Store
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+
+# Docker volumes / local data
+docker/postgres-data/

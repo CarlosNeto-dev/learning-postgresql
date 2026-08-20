@@ -1,0 +1,20 @@
+# Version control
+.git
+.gitignore
+
+# Editor / OS
+.vscode
+.DS_Store
+*.swp
+
+# Secrets
+.env
+*.env
+!.env.example
+
+# Docs / academic material (not needed inside any image)
+academic/
+README.md
+
+# Local Docker artifacts
+docker/postgres-data/
