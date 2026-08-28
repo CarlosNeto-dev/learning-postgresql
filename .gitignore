@@ -13,3 +13,6 @@ docker/.env
 
 # Docker volumes / local data
 docker/postgres-data/
+
+# SQLTools auto-generated query session scratch files
+*.session.sql

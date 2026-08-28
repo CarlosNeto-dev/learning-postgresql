@@ -48,7 +48,7 @@ Inside the Docker Compose network, the database is reachable at host `postgres` 
 
 - Username: `postgres`
 - Password: value of `POSTGRES_PASSWORD` in `docker/.env` (not versioned; `docker/.env.example` documents the shape)
-- Database: `carlos_database` (see `docker/CLAUDE.md` for the rename history from `meubancodedados`)
+- Database: `db_consultpsi` (see `docker/CLAUDE.md` for the full rename history: `meubancodedados` → `carlos_database` → `db_consultpsi`)
 
 ## Git history notes
 

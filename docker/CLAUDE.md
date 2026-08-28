@@ -13,18 +13,31 @@ Docker Compose stack for the PostgreSQL study environment.
 ```
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres123
-POSTGRES_DB=carlos_database
+POSTGRES_DB=db_consultpsi
 ```
 
 `POSTGRES_USER` is the **login username**, not the database name — this was a real point of confusion during setup (the user initially thought `POSTGRES_USER` should hold `carlos-database`). `POSTGRES_DB` is the database name.
 
-## Why `carlos_database` and not `carlos-database`
+## Database naming history
 
-The user wanted the database renamed to match the project name. Hyphens in Postgres identifiers require quoting in SQL (`"carlos-database"`), which is easy to forget and error-prone. Recommended underscore instead; user confirmed `carlos_database` explicitly when asked.
+The database went through two names before settling:
 
-## Why the rename wasn't just "change `.env` and restart"
+1. `meubancodedados` — the original name from initial setup.
+2. `carlos_database` — renamed to match the project/repo name. Hyphens in Postgres identifiers require quoting in SQL (`"carlos-database"`), which is easy to forget and error-prone, so underscore was used instead of the initially-proposed `carlos-database`.
+3. `db_consultpsi` — final rename, to match the name the user's course instructor uses for the same exercise/dataset, so the study material lines up 1:1 with what's taught in class.
 
-`POSTGRES_DB` (and `POSTGRES_USER`/`POSTGRES_PASSWORD`) only take effect on **first initialization of an empty data volume**. The volume (`docker_postgres-data`) was already initialized with the old database `meubancodedados`, so editing `.env` alone did nothing to existing data — Postgres doesn't re-read these vars on every restart. To add `carlos_database` non-destructively, `CREATE DATABASE carlos_database;` was run directly against the running `postgres-db` container, preserving `meubancodedados` alongside it. Verified with `\l`. Dropping the old database was intentionally left to the user (destructive action, not taken automatically).
+## Why a rename isn't just "change `.env` and restart"
+
+`POSTGRES_DB` (and `POSTGRES_USER`/`POSTGRES_PASSWORD`) only take effect on **first initialization of an empty data volume**. Editing `.env` alone does nothing to an already-initialized volume — Postgres doesn't re-read these vars on every restart. Each rename above was done live against the running `postgres-db` container instead:
+
+```sql
+\c postgres
+ALTER DATABASE old_name RENAME TO new_name;   -- or:
+CREATE DATABASE new_name;                     -- to add non-destructively, then
+DROP DATABASE old_name;                       -- to remove the old one once no longer needed
+```
+
+`meubancodedados` → `carlos_database` was done as a non-destructive `CREATE DATABASE` (both existed side by side for a while) followed later by a `DROP DATABASE meubancodedados` once confirmed unused. `carlos_database` → `db_consultpsi` followed the same pattern: `db_consultpsi` was created fresh, then `carlos_database` was dropped once the user confirmed it should go (had to terminate an active SQLTools session against it first, via `pg_terminate_backend`, since Postgres won't drop a database with open connections).
 
 ## Known cleanup opportunity (not yet done)
 

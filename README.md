@@ -22,8 +22,7 @@ Study environment for PostgreSQL and DBeaver, based on the *PostgreSQL & DBeaver
 │   ├── .env              # database credentials (not versioned)
 │   └── .env.example      # credentials template
 └── academic/              # course/study material
-    ├── reference/         # reading material (installation guide PDF)
-    └── sql/               # SQL scripts and query sessions
+    └── reference/         # reading material (installation guide PDF)
 ```
 
 ## Usage
@@ -40,7 +39,7 @@ Connect with DBeaver:
 
 - Host: `localhost`
 - Port: `5432`
-- Database: `carlos_database`
+- Database: `db_consultpsi`
 - Username: `postgres`
 - Password: value of `POSTGRES_PASSWORD` in `docker/.env`
 
@@ -61,7 +60,7 @@ Or use the **SQLTools** extension (installed automatically) for a GUI query edit
 
 - Server Address: `postgres` (the Docker Compose service name — not `localhost`)
 - Port: `5432`
-- Database: `carlos_database`
+- Database: `db_consultpsi`
 - Username: `postgres`
 - Password: value of `POSTGRES_PASSWORD` in `docker/.env`
 

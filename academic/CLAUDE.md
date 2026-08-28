@@ -6,9 +6,10 @@ Course/study material for the PostgreSQL & DBeaver installation guide, separated
 
 ```
 academic/
-├── reference/   # reading material (the installation guide PDF) — see reference/CLAUDE.md
-└── sql/         # SQL scripts and query sessions — see sql/CLAUDE.md
+└── reference/   # reading material (the installation guide PDF) — see reference/CLAUDE.md
 ```
+
+There used to be an `academic/sql/` folder holding SQLTools' auto-generated `.session.sql` scratch files. It was removed — those files are just throwaway query scratchpads, not meaningful study material worth versioning, and keeping a folder around just to catch them added structure without value. `*.session.sql` is now gitignored at the repo root instead (see root `.gitignore`), so if SQLTools drops one there again it won't clutter the repo or need to be tracked/organized.
 
 ## "Is Docker alone enough to do everything the guide describes?"
 
