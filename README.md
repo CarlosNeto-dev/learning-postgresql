@@ -1,4 +1,4 @@
-# Docker & Databases
+# Learning PostgreSQL with Docker
 
 Study environment for PostgreSQL and DBeaver, based on the *PostgreSQL & DBeaver Installation Guide* (see `academic/`).
 
